@@ -1,0 +1,28 @@
+<h4>Create New Bucket</h4>
+<div class="bucket-create-wrapper">
+	<div class="cancel-bucket-btn" (click)="closeBucketCreation()">X</div>
+	<div class="row">
+		<div class="col-6">
+			<div class="form-group">
+    			<label for="bucket-name">Bucket Name *</label>
+    			<input type="text" class="form-control" id="bucket-name" placeholder="My Fancy New Bucket">
+  			</div>	
+		</div>
+		<div class="col-6">
+			<div class="form-group">
+    			<label for="bucket-location">Bucket Location *</label>
+    			<select class="custom-select form-control" id="bucket-location">
+    				<option selected>Select location</option>
+    				<option value="1">One</option>
+    				<option value="2">Two</option>
+    				<option value="3">Three</option>
+  				</select>
+  			</div>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<button class="btn btn-primary bucket-btn" (click)="createBucket()" [disabled]="bucketCreated">Create Bucket</button>
+		</div>
+	</div>
+</div>

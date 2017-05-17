@@ -1,0 +1,23 @@
+.buckets-main-wrapper {
+	padding: 50px 0;
+}
+
+.buckets-wrapper {
+	padding: 30px;
+	background: #f9f9f9;
+	margin-bottom: 15px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	
+	.buckets-header {
+		display: block;
+		padding: 20px 0;
+		.buckets-label {
+			display: inline-block;
+		}
+		.bucket-btn {
+			display: inline-block;
+			float: right;
+		}
+	}
+}

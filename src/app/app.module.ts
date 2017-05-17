@@ -5,16 +5,24 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BucketsComponent } from './buckets/buckets.component';
+import { BucketComponent } from './buckets/bucket/bucket.component';
+import { NewBucketComponent } from './buckets/new-bucket/new-bucket.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BucketsComponent,
+    BucketComponent,
+    NewBucketComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+	BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,28 @@
+<div class="buckets-main-wrapper"> 
+	<div class="buckets-wrapper" *ngIf="newBucket">
+		<bc-new-bucket (onCreated)="onCreated($event)"></bc-new-bucket>
+	</div>
+
+	<div class="buckets-wrapper">
+		<h4>Buckets List</h4>
+		<div class="buckets-header clearfix">
+			<div class="buckets-label">All Buckets ({{buckets.length}})</div>
+			<button class="btn btn-primary bucket-btn" (click)="addNewBucket()" [hidden]="newBucket">Create New Bucket</button>
+		</div>
+		<table class="table table-hover">
+			<thead class="thead-default">
+				<tr>
+					<th>Name</th>
+					<th>Location</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let bucket of buckets">
+					<td>{{bucket.name}}</td>
+					<td>{{bucket.location.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

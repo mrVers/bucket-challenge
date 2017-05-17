@@ -1,0 +1,10 @@
+.bucket-create-wrapper {
+	position: relative;
+	.cancel-bucket-btn {
+		position: absolute;
+		right: 0px;
+    	top: -40px;
+		cursor: pointer;
+		padding: 5px;
+	}
+}
