@@ -1,8 +1,7 @@
 <div class="buckets-main-wrapper"> 
 	<div class="buckets-wrapper" *ngIf="newBucket">
-		<bc-new-bucket (onCreated)="onCreated($event)"></bc-new-bucket>
+		<bc-new-bucket (onCreated)="onCreated($event)" [locations]="locations"></bc-new-bucket>
 	</div>
-
 	<div class="buckets-wrapper">
 		<h4>Buckets List</h4>
 		<div class="buckets-header clearfix">

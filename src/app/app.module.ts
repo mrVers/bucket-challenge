@@ -9,6 +9,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BucketsComponent } from './buckets/buckets.component';
 import { BucketComponent } from './buckets/bucket/bucket.component';
 import { NewBucketComponent } from './buckets/new-bucket/new-bucket.component';
+import { requestOptionsProvider } from './default-request-options.service';
+import { APP_CONFIG, APP_CONFIG_EXPORT } from './app-config';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { NewBucketComponent } from './buckets/new-bucket/new-bucket.component';
     AppRoutingModule,
 	BsDropdownModule.forRoot()
   ],
-  providers: [],
+  providers: [
+	requestOptionsProvider,
+	{ provide: APP_CONFIG, useValue: APP_CONFIG_EXPORT }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,18 +5,15 @@
 		<div class="col-6">
 			<div class="form-group">
     			<label for="bucket-name">Bucket Name *</label>
-    			<input type="text" class="form-control" id="bucket-name" placeholder="My Fancy New Bucket">
+    			<input type="text" class="form-control" id="bucket-name" placeholder="My Fancy New Bucket" [(ngModel)]="model.name">
   			</div>	
 		</div>
 		<div class="col-6">
 			<div class="form-group">
     			<label for="bucket-location">Bucket Location *</label>
-    			<select class="custom-select form-control" id="bucket-location">
-    				<option selected>Select location</option>
-    				<option value="1">One</option>
-    				<option value="2">Two</option>
-    				<option value="3">Three</option>
-  				</select>
+				<select class="custom-select form-control" id="bucket-location" [(ngModel)]="model.location">
+  					<option *ngFor="let location of locations" [ngValue]="location">{{location.name}}</option>
+				</select>
   			</div>	
 		</div>
 	</div>

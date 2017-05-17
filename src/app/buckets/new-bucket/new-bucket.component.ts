@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { BucketsComponent } from '../buckets.component';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'bc-new-bucket',
@@ -8,18 +9,34 @@ import { BucketsComponent } from '../buckets.component';
 })
 export class NewBucketComponent implements OnInit {
 	
-bucketCreated: boolean;
-	
+	bucketCreated: boolean;
+	//model : Model;
+	selectedLocation;
+	model;
+		
 	@Output() 
-	onCreated = new EventEmitter<boolean>();
+	onCreated = new EventEmitter<any>();
+	
+	@Input() 
+	locations;
 	
   constructor() {
-	  this.bucketCreated = false;
+	  
+	  this.model = {
+		  name: '',
+		  location: {
+		  	id: null,
+		  	name: null
+	  	  }
+	  };
+	  
+      this.bucketCreated = false; 
+
   }
 	
   createBucket() {
 	  
-	  this.onCreated.emit(false);
+	  this.onCreated.emit(this.model);
 	  
 	  this.bucketCreated = true;
 	
@@ -27,7 +44,7 @@ bucketCreated: boolean;
 	
   closeBucketCreation() {
 	  
-	  this.onCreated.emit(false);
+	  this.onCreated.emit(null);
 	  	
   };
 	
@@ -35,4 +52,14 @@ bucketCreated: boolean;
   ngOnInit() {
   }
 
+}
+
+interface Model {
+	name: string;
+	location: Location;
+}
+
+interface Location {
+	id: string;
+	name: string;
 }
