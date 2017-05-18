@@ -1,11 +1,11 @@
-import { Injectable, Inject } from '@angular/core';
-import { BaseRequestOptions, RequestOptions } from '@angular/http';
-import { APP_CONFIG, AppConfig } from './app-config';
+import {Injectable, Inject} from '@angular/core';
+import {BaseRequestOptions, RequestOptions} from '@angular/http';
+import {APP_CONFIG, AppConfig} from './app-config';
 
 @Injectable()
 export class DefaultRequestOptions extends BaseRequestOptions {
 
-  constructor(@Inject(APP_CONFIG) private CONFIG : AppConfig) {
+  constructor( @Inject(APP_CONFIG) private CONFIG: AppConfig ) {
     super();
 
     // Set the default 'Content-Type' header
@@ -13,4 +13,4 @@ export class DefaultRequestOptions extends BaseRequestOptions {
   }
 }
 
-export const requestOptionsProvider = { provide: RequestOptions, useClass: DefaultRequestOptions };
+export const requestOptionsProvider = {provide: RequestOptions, useClass: DefaultRequestOptions};
