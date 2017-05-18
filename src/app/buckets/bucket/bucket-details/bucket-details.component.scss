@@ -1,0 +1,17 @@
+.buckets-header {
+  display: block;
+  padding: 20px 0;
+
+  .buckets-label {
+    display: inline-block;
+    font-weight: 600;
+    vertical-align: sub;
+  }
+  .bucket-btn {
+    display: inline-block;
+    float: right;
+  }
+}
+.error-message {
+  color: red;
+}
