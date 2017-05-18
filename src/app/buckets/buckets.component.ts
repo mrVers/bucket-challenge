@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BucketService} from './bucket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector   : 'bc-buckets',
@@ -13,7 +14,8 @@ export class BucketsComponent implements OnInit {
   buckets: Bucket[];
   locations: Location[];
 
-  constructor( private bucketService: BucketService ) {
+  constructor( private bucketService: BucketService,
+               private router: Router) {
 
     this.newBucket = false;
 
@@ -30,13 +32,15 @@ export class BucketsComponent implements OnInit {
     if ( createdBucket ) {
       this.buckets.push(createdBucket);
       this.newBucket = false;
-    }
-    else {
-      this.newBucket = true;
+    } else {
+      console.log('canceled');
+      this.newBucket = false;
       // error
     }
+  }
 
-
+  onSelect(bucket: Bucket) {
+    this.router.navigate(['../bucket', bucket.id]);
   }
 
   ngOnInit() {

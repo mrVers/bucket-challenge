@@ -12,12 +12,21 @@
 	.buckets-header {
 		display: block;
 		padding: 20px 0;
+
 		.buckets-label {
 			display: inline-block;
+			font-weight: 600;
 		}
+
 		.bucket-btn {
 			display: inline-block;
 			float: right;
+		}
+	}
+
+	.table {
+		.bucket-tr-link {
+			cursor: pointer;
 		}
 	}
 }

@@ -23,5 +23,22 @@ export class BucketService {
 
   }
 
+  getBucket( bucketId ) {
+    return this.http.get(this.CONFIG.url + '/buckets/' + bucketId)
+      .map(res => res.json().bucket);
+
+  }
+
+  createBucket( bucketModel ) {
+    return this.http.post(this.CONFIG.url + '/buckets', bucketModel)
+      .map(res => res.json());
+  }
+
+  getBucketObjects( bucketId ) {
+    return this.http.get(this.CONFIG.url + '/bucket/' + bucketId + '/objects')
+      .map(res => res.json());
+
+  }
+
 }
 

@@ -1,18 +1,17 @@
 import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import {BucketsComponent} from '../buckets.component';
-import {FormsModule} from '@angular/forms';
+import {BucketService} from '../bucket.service';
 
 @Component({
-  selector: 'bc-new-bucket',
+  selector   : 'bc-new-bucket',
   templateUrl: './new-bucket.component.html',
-  styleUrls: [ './new-bucket.component.scss' ]
+  styleUrls  : [ './new-bucket.component.scss' ]
 })
 export class NewBucketComponent implements OnInit {
 
-  bucketCreated: boolean;
-  // model : Model;
+  bucketCreating: boolean;
+  model: Model;
   selectedLocation;
-  model;
+  // model;
 
   @Output()
   onCreated = new EventEmitter<any>();
@@ -20,30 +19,45 @@ export class NewBucketComponent implements OnInit {
   @Input()
   locations;
 
-  constructor() {
+  constructor( private bucketService: BucketService ) {
 
-    this.model = {
-      name: '',
+    // initial setup
+    this.bucketCreating = false;
+    this.model          = {
+      name    : '',
       location: {
-        id: null,
+        id  : null,
         name: null
       }
     };
-
-    this.bucketCreated = false;
-
   }
 
+  // creating a new bucket function
   createBucket() {
 
-    this.onCreated.emit(this.model);
+    // TODO error handling
 
-    this.bucketCreated = true;
+    // disable the submit button
+    this.bucketCreating = true;
 
+    // bucket model
+    const bucketModel: BucketModel = {
+      name    : this.model.name,
+      location: this.model.location.id
+    };
+
+    // calling the bucketService
+    this.bucketService.createBucket(bucketModel)
+      .subscribe(newCreatedBucket => {
+        // emitting the response to the parent component
+        this.onCreated.emit(newCreatedBucket);
+        this.bucketCreating = false;
+      });
   };
 
   closeBucketCreation() {
 
+    // emitting a null function to parent component
     this.onCreated.emit(null);
 
   };
@@ -62,4 +76,9 @@ interface Model {
 interface Location {
   id: string;
   name: string;
+}
+
+interface BucketModel {
+  name: string;
+  location: string;
 }
