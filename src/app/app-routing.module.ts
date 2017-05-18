@@ -3,6 +3,8 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {BucketsComponent} from './buckets/buckets.component';
 import {BucketComponent} from './buckets/bucket/bucket.component';
+import {FileListComponent} from './buckets/bucket/file-list/file-list.component';
+import {BucketDetailsComponent} from './buckets/bucket/bucket-details/bucket-details.component';
 
 const routes: Routes = [
   {
@@ -16,7 +18,11 @@ const routes: Routes = [
   },
   {
     path     : 'bucket/:id',
-    component: BucketComponent
+    component: BucketComponent,
+    children : [
+      {path: '', component: FileListComponent},
+      {path: 'details', component: BucketDetailsComponent}
+    ]
   }
 ];
 

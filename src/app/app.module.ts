@@ -11,6 +11,8 @@ import {BucketComponent} from './buckets/bucket/bucket.component';
 import {NewBucketComponent} from './buckets/new-bucket/new-bucket.component';
 import {requestOptionsProvider} from './default-request-options.service';
 import {APP_CONFIG, APP_CONFIG_EXPORT} from './app-config';
+import { FileListComponent } from './buckets/bucket/file-list/file-list.component';
+import { BucketDetailsComponent } from './buckets/bucket/bucket-details/bucket-details.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {APP_CONFIG, APP_CONFIG_EXPORT} from './app-config';
     AppComponent,
     BucketsComponent,
     BucketComponent,
-    NewBucketComponent
+    NewBucketComponent,
+    FileListComponent,
+    BucketDetailsComponent
   ],
   imports     : [
     BrowserModule,

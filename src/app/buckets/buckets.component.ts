@@ -35,7 +35,7 @@ export class BucketsComponent implements OnInit {
     } else {
       console.log('canceled');
       this.newBucket = false;
-      // error
+      // TODO error
     }
   }
 
