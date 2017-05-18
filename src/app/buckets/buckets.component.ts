@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {BucketService} from './bucket.service';
+import { Component, OnInit } from '@angular/core';
+import { BucketService } from './bucket.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class BucketsComponent implements OnInit {
   locations: Location[];
 
   constructor( private bucketService: BucketService,
-               private router: Router) {
+               private router: Router ) {
 
     this.newBucket = false;
 
@@ -39,8 +39,8 @@ export class BucketsComponent implements OnInit {
     }
   }
 
-  onSelect(bucket: Bucket) {
-    this.router.navigate(['../bucket', bucket.id]);
+  onSelect( bucket: Bucket ) {
+    this.router.navigate([ '../bucket', bucket.id ]);
   }
 
   ngOnInit() {

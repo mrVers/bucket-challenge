@@ -1,0 +1,14 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ng-content select=".modal-title"></ng-content>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <ng-content select=".modal-body"></ng-content>
+      <ng-content select=".modal-footer"></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="buckets-header clearfix">
     <div class="buckets-label">About this bucket:</div>
-    <button class="btn btn-danger bucket-btn" (click)="deleteBucket()" [disabled]="deleting">Delete bucket</button>
+    <button class="btn btn-danger bucket-btn" (click)="modal.show()" [disabled]="deleting" >Delete bucket</button>
 </div>
 
 <div class="bucket-details">
@@ -9,3 +9,16 @@
     <p><strong>Bucket size:</strong> {{bucket.size}} GB</p>
 </div>
 <div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
+
+<bc-modal #modal>
+    <h4 class="modal-title pull-left">Confirm action</h4>
+    <div class="modal-body">
+        Do you really want to delete the bucket?
+        <br>
+        <br>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger bucket-btn" (click)="deleteBucket(); modal.hide()">Delete bucket</button>
+        <button class="btn btn-secondary bucket-btn" (click)="modal.hide()">Cancel</button>
+    </div>
+</bc-modal>

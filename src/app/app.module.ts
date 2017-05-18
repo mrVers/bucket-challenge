@@ -1,18 +1,19 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {BucketsComponent} from './buckets/buckets.component';
-import {BucketComponent} from './buckets/bucket/bucket.component';
-import {NewBucketComponent} from './buckets/new-bucket/new-bucket.component';
-import {requestOptionsProvider} from './default-request-options.service';
-import {APP_CONFIG, APP_CONFIG_EXPORT} from './app-config';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BucketsComponent } from './buckets/buckets.component';
+import { BucketComponent } from './buckets/bucket/bucket.component';
+import { NewBucketComponent } from './buckets/new-bucket/new-bucket.component';
+import { requestOptionsProvider } from './default-request-options.service';
+import { APP_CONFIG, APP_CONFIG_EXPORT } from './app-config';
 import { FileListComponent } from './buckets/bucket/file-list/file-list.component';
 import { BucketDetailsComponent } from './buckets/bucket/bucket-details/bucket-details.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 
 @NgModule({
@@ -22,14 +23,15 @@ import { BucketDetailsComponent } from './buckets/bucket/bucket-details/bucket-d
     BucketComponent,
     NewBucketComponent,
     FileListComponent,
-    BucketDetailsComponent
+    BucketDetailsComponent,
+    ModalComponent
   ],
   imports     : [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    BsDropdownModule.forRoot()
+    ModalModule.forRoot()
   ],
   providers   : [
     requestOptionsProvider,
