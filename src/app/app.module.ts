@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +25,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     NewBucketComponent,
     FileListComponent,
     BucketDetailsComponent,
-    ModalComponent
+    ModalComponent,
+    FileSelectDirective
   ],
   imports     : [
     BrowserModule,
