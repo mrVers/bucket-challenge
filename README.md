@@ -2,9 +2,35 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
 
+## Requirements
+
+* NodeJS 6.9.0 or higher
+* Angular CLI `$ npm install -g @angular/cli`
+
+## Setup
+
+Go to the folder you want to clone the project in and run
+
+`$ git clone https://github.com/mrVers/bucket-challenge.git`
+
+Then install all dependencies
+
+* `$ npm i`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Running with Docker
+
+```
+# Create the image
+$ docker build -t bucket-challenge .
+
+# Serve the image
+$ docker run -d --name bucket-challenge -p 4200:4200 bucket-challenge
+
+```
 
 ## Code scaffolding
 
