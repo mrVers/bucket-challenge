@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DefaultRequestOptionsService } from './default-request-options.service';
+import { DefaultRequestOptions } from './default-request-options.service';
 
 describe('DefaultRequestOptionsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DefaultRequestOptionsService]
+      providers: [DefaultRequestOptions]
     });
   });
 
-  it('should be created', inject([DefaultRequestOptionsService], (service: DefaultRequestOptionsService) => {
+  it('should be created', inject([DefaultRequestOptions], (service: DefaultRequestOptions) => {
     expect(service).toBeTruthy();
   }));
 });

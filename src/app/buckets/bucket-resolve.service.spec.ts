@@ -1,11 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { BucketResolveService } from './bucket-resolve.service';
+import { BucketService } from './bucket.service';
+import {InjectionToken} from '@angular/core';
+
 
 describe('BucketResolveService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BucketResolveService]
+      providers: [BucketResolveService, BucketService, InjectionToken]
     });
   });
 
