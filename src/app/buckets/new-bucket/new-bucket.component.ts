@@ -10,8 +10,7 @@ export class NewBucketComponent implements OnInit {
 
   bucketCreating: boolean;
   model: Model;
-  selectedLocation;
-  // model;
+  errorMessage: String = '';
 
   @Output()
   onCreated = new EventEmitter<any>();
@@ -35,8 +34,6 @@ export class NewBucketComponent implements OnInit {
   // creating a new bucket function
   createBucket() {
 
-    // TODO error handling
-
     // disable the submit button
     this.bucketCreating = true;
 
@@ -45,6 +42,13 @@ export class NewBucketComponent implements OnInit {
       name    : this.model.name,
       location: this.model.location.id
     };
+
+    // validation
+    if ( this.model.name === '' || this.model.location.id === null ) {
+      this.bucketCreating = false;
+      this.errorMessage = 'Please select a name and location.';
+      return;
+    }
 
     // calling the bucketService
     this.bucketService.createBucket(bucketModel)

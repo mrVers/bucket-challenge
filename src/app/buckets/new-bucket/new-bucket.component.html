@@ -21,5 +21,6 @@
 		<div class="col-12">
 			<button class="btn btn-primary bucket-btn" (click)="createBucket()" [disabled]="bucketCreating">Create Bucket</button>
 		</div>
+		<div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
 	</div>
 </div>
