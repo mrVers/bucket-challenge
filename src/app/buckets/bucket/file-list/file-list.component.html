@@ -2,7 +2,7 @@
     <div class="buckets-label">All Files ({{fileList.length}})</div>
     <input type="file" ng2FileSelect [uploader]="uploader" class="btn btn-success bucket-btn"/>
 </div>
-<div class="progress" *ngIf="uploader.progress > 1" style="margin-bottom: 10px;">
+<div class="progress" *ngIf="uploader.isUploading" style="margin-bottom: 10px;">
     <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
 </div>
 
@@ -26,8 +26,9 @@
             </td>
         </tr>
         <tr *ngIf="fileList.length === 0">
-            <td colspan="4" class="empty-bucket">No files in this bucket. Upload one today.</td>
+            <td colspan="4" class="empty-bucket">No files in this bucket. Upload some to make it happy.</td>
         </tr>
         </tbody>
     </table>
 </div>
+<div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>

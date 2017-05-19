@@ -18,38 +18,42 @@ export class BucketsComponent implements OnInit {
                private router: Router ) {
 
     this.newBucket = false;
-
     this.buckets   = [];
     this.locations = [];
 
   }
 
+  // set true when adding
   addNewBucket() {
     this.newBucket = true;
   }
 
+  // func that receives an emit from new-bucket
   onCreated( createdBucket ) {
+    // if present, push into buckets array
     if ( createdBucket ) {
       this.buckets.push(createdBucket);
       this.newBucket = false;
     } else {
-      console.log('canceled');
+      // if dismissed, close component
       this.newBucket = false;
-      // TODO error
     }
   }
 
+  // redirect to bucket item
   onSelect( bucket: Bucket ) {
     this.router.navigate([ '../bucket', bucket.id ]);
   }
 
   ngOnInit() {
 
+    // get bucket list
     this.bucketService.getBucketList()
       .subscribe(bucketList => {
         this.buckets = bucketList;
       });
 
+    // get bucket locations
     this.bucketService.getBucketLocations()
       .subscribe(bucketLocations => {
         this.locations = bucketLocations;

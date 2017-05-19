@@ -17,6 +17,7 @@ export class BucketComponent implements OnInit {
   constructor( private bucketService: BucketService,
                private route: ActivatedRoute ) {
 
+    // default model if none loaded
     this.bucket = {
       id      : null,
       name    : 'Default bucket',

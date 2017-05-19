@@ -22,6 +22,7 @@ export class BucketDetailsComponent implements OnInit {
 
   }
 
+  // delete function
   deleteBucket() {
 
     this.errorMessage = 'Deleting...';
