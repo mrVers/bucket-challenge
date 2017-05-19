@@ -1,9 +1,9 @@
 <div class="buckets-header clearfix">
-    <div class="buckets-label">All Files (2)</div>
+    <div class="buckets-label">All Files ({{fileList.length}})</div>
     <input type="file" ng2FileSelect [uploader]="uploader" class="btn btn-success bucket-btn"/>
-    <div class="progress" style="">
-        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-    </div>
+</div>
+<div class="progress" *ngIf="uploader.progress > 1" style="margin-bottom: 10px;">
+    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
 </div>
 
 <div class="bucket-data-list">
@@ -17,21 +17,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Filename 1</td>
-            <td>06.09.2015</td>
-            <td>3MB</td>
+        <tr *ngFor="let file of fileList">
+            <td>{{file.name}}</td>
+            <td>{{file.last_modified | date: 'dd.MM.yyyy'}}</td>
+            <td>{{file.size | fileSize }}</td>
             <td>
-                <button class="btn btn-outline-warning btn-sm">Delete</button>
+                <button class="btn btn-outline-warning btn-sm" (click)="deleteFileObject(file)">Delete</button>
             </td>
         </tr>
-        <tr>
-            <td>Filename 1</td>
-            <td>06.09.2015</td>
-            <td>3MB</td>
-            <td>
-                <button class="btn btn-outline-warning btn-sm">Delete</button>
-            </td>
+        <tr *ngIf="fileList.length === 0">
+            <td colspan="4" class="empty-bucket">No files in this bucket. Upload one today.</td>
         </tr>
         </tbody>
     </table>

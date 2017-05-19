@@ -22,14 +22,11 @@ const routes: Routes = [
   {
     path     : 'bucket/:id',
     component: BucketComponent,
-    resolve: {
+    resolve  : {
       bucket: BucketResolveService
     },
     children : [
-      {
-        path     : '',
-        component: FileListComponent
-      },
+      {path: '', component: FileListComponent},
       {path: 'details', component: BucketDetailsComponent}
     ]
   }

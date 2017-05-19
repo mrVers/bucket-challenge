@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DataService } from '../../../data.service';
 import { BucketService } from '../../bucket.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { APP_CONFIG, AppConfig } from '../../../app-config';
+import { APP_CONFIG } from '../../../app-config';
 
 
 @Component({
@@ -11,16 +11,21 @@ import { APP_CONFIG, AppConfig } from '../../../app-config';
   templateUrl: './file-list.component.html',
   styleUrls  : [ './file-list.component.scss' ]
 })
-export class FileListComponent implements OnInit {
+export class FileListComponent implements OnInit, AfterViewInit {
 
   bucket: Bucket;
-  uploader: FileUploader;
+  uploader: FileUploader = null;
+  fileList;
+  bucketId: string;
 
   constructor( private dataService: DataService,
                private bucketService: BucketService,
                private router: Router,
                private route: ActivatedRoute,
                @Inject(APP_CONFIG) private CONFIG ) {
+
+    this.fileList = [];
+
   }
 
   ngOnInit() {
@@ -30,17 +35,58 @@ export class FileListComponent implements OnInit {
         this.bucket = data.bucket;
       });
 
-    const URL: string = this.CONFIG.url + '/' + this.bucket.id + '/objects';
+    this.bucketId = this.bucket.id;
 
     this.uploader = new FileUploader({
-      url              : URL,
+      url              : this.CONFIG.url + '/buckets/' + this.bucketId + '/objects',
+      authToken        : 'Token ' + this.CONFIG.token,
       autoUpload       : true,
-      removeAfterUpload: true
+      removeAfterUpload: false
     });
 
-    this.uploader.progress = 0;
+    console.log(this.bucketId);
+
+    this.updateFileList();
 
   }
+
+  ngAfterViewInit() {
+    this.uploader.onAfterAddingFile = (item => {
+      item.withCredentials = false;
+    });
+
+    this.uploader.onCompleteItem = () => {
+      this.updateFileList();
+    };
+  }
+
+  updateFileList() {
+    this.bucketService.getBucketObjects(this.bucketId)
+      .subscribe(fileList => {
+          this.fileList = fileList.objects;
+        },
+        ( error ) => {
+          console.log(error);
+        });
+  };
+
+  deleteFileObject( removableFile ) {
+    this.bucketService.deleteBucketObjects(this.bucketId, removableFile.name)
+      .subscribe(
+        ( res ) => {
+          if ( res.status === 200 ) {
+            for ( let i = 0; i < this.fileList.length; i++ ) {
+              if ( removableFile.name === this.fileList[ i ].name ) {
+                this.fileList.splice(i, 1);
+              }
+            }
+          }
+        },
+        ( error ) => {
+          console.log(error);
+        });
+  };
+
 
 }
 

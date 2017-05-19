@@ -47,8 +47,14 @@ export class BucketService {
   }
 
   getBucketObjects( bucketId ) {
-    return this.http.get(this.CONFIG.url + '/bucket/' + bucketId + '/objects')
+    return this.http.get(this.CONFIG.url + '/buckets/' + bucketId + '/objects')
       .map(res => res.json());
+
+  }
+
+  deleteBucketObjects( bucketId, fileId ) {
+    return this.http.delete(this.CONFIG.url + '/buckets/' + bucketId + '/objects/' + fileId)
+      .map(res => res);
 
   }
 

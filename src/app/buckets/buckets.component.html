@@ -20,6 +20,9 @@
 					<td>{{bucket.name}}</td>
 					<td>{{bucket.location.name}}</td>
 				</tr>
+				<tr *ngIf="buckets.length === 0">
+					<td colspan="4" class="empty-bucket-list">No buckets to display. Create one to begin.</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

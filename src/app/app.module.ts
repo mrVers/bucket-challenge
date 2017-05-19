@@ -15,7 +15,7 @@ import { APP_CONFIG, APP_CONFIG_EXPORT } from './app-config';
 import { FileListComponent } from './buckets/bucket/file-list/file-list.component';
 import { BucketDetailsComponent } from './buckets/bucket/bucket-details/bucket-details.component';
 import { ModalComponent } from './shared/modal/modal.component';
-import { BucketResolveService } from './buckets/bucket-resolve.service';
+import { FileSizePipe } from './shared/file-size.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { BucketResolveService } from './buckets/bucket-resolve.service';
     FileListComponent,
     BucketDetailsComponent,
     ModalComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    FileSizePipe
   ],
   imports     : [
     BrowserModule,
@@ -37,8 +38,7 @@ import { BucketResolveService } from './buckets/bucket-resolve.service';
   ],
   providers   : [
     requestOptionsProvider,
-    {provide: APP_CONFIG, useValue: APP_CONFIG_EXPORT},
-    BucketResolveService
+    {provide: APP_CONFIG, useValue: APP_CONFIG_EXPORT}
   ],
   bootstrap   : [ AppComponent ]
 })

@@ -19,7 +19,7 @@ export class BucketResolveService implements Resolve<Bucket> {
         if ( res ) {
           // save to dataService
           this.dataService.selectedBucket = res.json().bucket;
-
+          console.log('resolved bucket');
           return res.json().bucket;
 
         } else {
