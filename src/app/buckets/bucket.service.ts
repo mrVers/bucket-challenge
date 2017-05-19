@@ -2,6 +2,7 @@ import {Injectable, Inject} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/toPromise';
 import {APP_CONFIG, AppConfig} from '../app-config';
 
 @Injectable()
@@ -26,7 +27,11 @@ export class BucketService {
 
   getBucket( bucketId ) {
     return this.http.get(this.CONFIG.url + '/buckets/' + bucketId)
-      .map(res => res.json().bucket);
+      .toPromise()
+      .then(bucket => bucket)
+      .catch(err => {
+        console.log(err);
+      });
 
   }
 
@@ -48,4 +53,3 @@ export class BucketService {
   }
 
 }
-

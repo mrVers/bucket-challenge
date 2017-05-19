@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DataService } from '../../../data.service';
 import { BucketService } from '../../bucket.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { APP_CONFIG, AppConfig } from '../../../app-config';
 
 
@@ -19,9 +19,18 @@ export class FileListComponent implements OnInit {
   constructor( private dataService: DataService,
                private bucketService: BucketService,
                private router: Router,
+               private route: ActivatedRoute,
                @Inject(APP_CONFIG) private CONFIG ) {
+  }
 
-    const URL: any = this.CONFIG.url + '/' + this.bucket.id + '/objects';
+  ngOnInit() {
+
+    this.route.data
+      .subscribe(( data: { bucket: Bucket } ) => {
+        this.bucket = data.bucket;
+      });
+
+    const URL: string = this.CONFIG.url + '/' + this.bucket.id + '/objects';
 
     this.uploader = new FileUploader({
       url              : URL,
@@ -31,10 +40,6 @@ export class FileListComponent implements OnInit {
 
     this.uploader.progress = 0;
 
-  }
-
-  ngOnInit() {
-    this.bucket = this.dataService.selectedBucket;
   }
 
 }
