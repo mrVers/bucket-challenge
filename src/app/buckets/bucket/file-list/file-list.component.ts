@@ -17,7 +17,8 @@ export class FileListComponent implements OnInit, AfterViewInit {
   uploader: FileUploader = null;
   fileList;
   bucketId: string;
-  errorMessage: String = '';
+  errorMessage: String   = '';
+  selectedFile;
 
   constructor( private dataService: DataService,
                private bucketService: BucketService,
@@ -62,6 +63,7 @@ export class FileListComponent implements OnInit, AfterViewInit {
     // updating file list on upload
     this.uploader.onCompleteItem = () => {
       this.updateFileList();
+      this.errorMessage = '';
     };
 
     // upload error
@@ -78,18 +80,19 @@ export class FileListComponent implements OnInit, AfterViewInit {
         },
         ( error ) => {
           console.log(error);
+          this.errorMessage = 'There was an error updating your file list. Please refresh the page.';
         });
   };
 
-  // update file function
-  deleteFileObject( removableFile ) {
-    this.bucketService.deleteBucketObjects(this.bucketId, removableFile.name)
+  // delete file function
+  deleteFileObject() {
+    this.bucketService.deleteBucketObjects(this.bucketId, this.selectedFile.name)
       .subscribe(
         ( res ) => {
           // if successful remove, splice from list
           if ( res.status === 200 ) {
             for ( let i = 0; i < this.fileList.length; i++ ) {
-              if ( removableFile.name === this.fileList[ i ].name ) {
+              if ( this.selectedFile.name === this.fileList[ i ].name ) {
                 this.fileList.splice(i, 1);
               }
             }
@@ -101,6 +104,12 @@ export class FileListComponent implements OnInit, AfterViewInit {
           this.errorMessage = 'There was a problem deleting your file. Please try again.';
         });
   };
+
+  // set file on modal open
+  setFile( file ) {
+    this.errorMessage = '';
+    this.selectedFile = file;
+  }
 
 
 }

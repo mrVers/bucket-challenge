@@ -22,13 +22,26 @@
             <td>{{file.last_modified | date: 'dd.MM.yyyy'}}</td>
             <td>{{file.size | fileSize }}</td>
             <td>
-                <button class="btn btn-outline-warning btn-sm" (click)="deleteFileObject(file)">Delete</button>
+                <button class="btn btn-outline-warning btn-sm btn-delete-file" (click)="modal.show(); setFile(file)">Delete</button>
             </td>
         </tr>
         <tr *ngIf="fileList.length === 0">
-            <td colspan="4" class="empty-bucket">No files in this bucket. Upload some to make it happy.</td>
+            <td colspan="4" class="empty-bucket">No files in this bucket. Upload some to make this bucket happy.</td>
         </tr>
         </tbody>
     </table>
 </div>
 <div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
+
+<bc-modal #modal>
+    <h4 class="modal-title pull-left">Confirm action</h4>
+    <div class="modal-body">
+        Do you really want to delete the item?
+        <br>
+        <br>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger bucket-btn" (click)="deleteFileObject(); modal.hide()">Delete file</button>
+        <button class="btn btn-secondary bucket-btn" (click)="modal.hide()">Cancel</button>
+    </div>
+</bc-modal>

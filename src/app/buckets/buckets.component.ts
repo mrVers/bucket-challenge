@@ -13,6 +13,7 @@ export class BucketsComponent implements OnInit {
   newBucket: boolean;
   buckets: Bucket[];
   locations: Location[];
+  errorMessage: String   = '';
 
   constructor( private bucketService: BucketService,
                private router: Router ) {
@@ -51,6 +52,11 @@ export class BucketsComponent implements OnInit {
     this.bucketService.getBucketList()
       .subscribe(bucketList => {
         this.buckets = bucketList;
+          this.errorMessage = '';
+      },
+      ( error ) => {
+        console.log(error);
+        this.errorMessage = 'There was an error getting your buckets. Please refresh the page.';
       });
 
     // get bucket locations
@@ -58,8 +64,6 @@ export class BucketsComponent implements OnInit {
       .subscribe(bucketLocations => {
         this.locations = bucketLocations;
       });
-
-    // todo error handling
 
   }
 
