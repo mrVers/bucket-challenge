@@ -15,7 +15,7 @@ import { APP_CONFIG, APP_CONFIG_EXPORT } from './app-config';
 import { FileListComponent } from './buckets/bucket/file-list/file-list.component';
 import { BucketDetailsComponent } from './buckets/bucket/bucket-details/bucket-details.component';
 import { ModalComponent } from './shared/modal/modal.component';
-
+import { BucketResolveService } from './buckets/bucket-resolve.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { ModalComponent } from './shared/modal/modal.component';
   ],
   providers   : [
     requestOptionsProvider,
-    {provide: APP_CONFIG, useValue: APP_CONFIG_EXPORT}
+    {provide: APP_CONFIG, useValue: APP_CONFIG_EXPORT},
+    BucketResolveService
   ],
   bootstrap   : [ AppComponent ]
 })

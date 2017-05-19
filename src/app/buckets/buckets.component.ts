@@ -55,6 +55,8 @@ export class BucketsComponent implements OnInit {
         this.locations = bucketLocations;
       });
 
+    // todo error handling
+
   }
 
 
