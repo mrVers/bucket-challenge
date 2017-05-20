@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 * NodeJS 6.9.0 or higher
 * Angular CLI `$ npm install -g @angular/cli`
+* Docker
 
 ## Setup
 
@@ -15,7 +16,7 @@ Go to the folder you want to clone the project in and run
 
 Then install all dependencies
 
-* `$ npm i`
+`$ npm i`
 
 ## Development server
 
@@ -27,10 +28,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 # Create the image
 $ docker build -t bucket-challenge .
 
-# Serve the image
+# Run the image
 $ docker run -d --name bucket-challenge -p 4200:4200 bucket-challenge
-
 ```
+
+Navigate to `http://localhost:4200/` to view the App served by Docker.
 
 ## Code scaffolding
 
